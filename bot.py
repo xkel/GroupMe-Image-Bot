@@ -32,14 +32,13 @@ def printAllMessages():
     url = '/groups/41498316/messages'
     params = {'token': config.token} # before_id, since_id, after_id
     messagesResponse = requests.get(base_url + url, params = params).json()
-    print(messagesResponse['response']['attachments'])
     msg_count = messagesResponse['response']['count']
     
     i = 0
     x = 0
     while i < msg_count:
         if(x < 20):
-            print(messagesResponse['response']['messages'][x]['text'])
+            print(messagesResponse['response']['messages'][x]['text'], (i+1))
             if(x == 19):
                id = messagesResponse['response']['messages'][x]['id'] 
             x += 1
