@@ -1,10 +1,10 @@
-import requests
-import config
 import bot
 
 
 if __name__ == "__main__":
+   # bot.groupMessage("Working with attachments")
     bot.printAllMessages()
+    
 
 
     #baseUrl = 'https://api.groupme.com/v3'
