@@ -1,5 +1,6 @@
 import config
 import requests
+import json
 
 # Group ID: 41498316
 
@@ -24,15 +25,17 @@ def makeGetRequest(url, params, json):
 
     print(r)
 
+def post_data():
+    base_url = 'http://386211c5.ngrok.io'
+    payload = json.dumps({'user': 'pass'})
+    
+    r = requests.post(base_url, data=payload)
+    print(r.status_code)
+    
 def groupMessage(text):
     url = '/bots/post'
     params = {'bot_id': config.bot_id, 'text': text}
     makePostRequest(url, params)
-
-
-# def extractAttachment(msgJson):
-#     if msgJson['response']['messages'][0]['attachments']:
-#         print
 
 # Prints all messages posted in a specified group chat (group id)
 # Note: Hard-coded group ID in
