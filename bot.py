@@ -24,7 +24,16 @@ def makeGetRequest(url, params, json):
 
     print(r)
 
-    
+def groupMessage(text):
+    url = '/bots/post'
+    params = {'bot_id': config.bot_id, 'text': text}
+    makePostRequest(url, params)
+
+
+# def extractAttachment(msgJson):
+#     if msgJson['response']['messages'][0]['attachments']:
+#         print
+
 # Prints all messages posted in a specified group chat (group id)
 # Note: Hard-coded group ID in
 def printAllMessages():
@@ -36,9 +45,12 @@ def printAllMessages():
     
     i = 0
     x = 0
+
     while i < msg_count:
         if(x < 20):
             print(messagesResponse['response']['messages'][x]['text'], (i+1))
+            if messagesResponse['response']['messages'][x]['attachments']:
+                print(messagesResponse['response']['messages'][x]['attachments'][0]['url'])
             if(x == 19):
                id = messagesResponse['response']['messages'][x]['id'] 
             x += 1
@@ -47,4 +59,3 @@ def printAllMessages():
             messagesResponse = requests.get(base_url + url, params = params).json()
             x = 0
         i += 1
-            
