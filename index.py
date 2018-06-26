@@ -3,7 +3,7 @@ import config
 import bot
 
 def main():
-    bot.getMessages()
+    bot.printAllMessages()
 
 
 main()
