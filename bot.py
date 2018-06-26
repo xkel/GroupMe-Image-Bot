@@ -2,6 +2,7 @@ import config
 import requests
 
 # Group ID: 41498316
+
 def makePostRequest(url, headers = None, params = None):
     base_url = 'https://api.groupme.com/v3'
 
@@ -24,22 +25,20 @@ def makeGetRequest(url, params, json):
     print(r)
 
     
-# Prints the HTTP response from getting messages in a specified group
+# Prints all messages posted in a specified group chat (group id)
 # Note: Hard-coded group ID in
-def getMessages():
+def printAllMessages():
     base_url = 'https://api.groupme.com/v3'
     url = '/groups/41498316/messages'
-    #headers = {'Content-Type': 'application/JSON'}
     params = {'token': config.token} # before_id, since_id, after_id
     messagesResponse = requests.get(base_url + url, params = params).json()
-
     msg_count = messagesResponse['response']['count']
     
     i = 0
     x = 0
     while i < msg_count:
         if(x < 20):
-            print(messagesResponse['response']['messages'][x]['text'])
+            print(messagesResponse['response']['messages'][x]['text'], (i+1))
             if(x == 19):
                id = messagesResponse['response']['messages'][x]['id'] 
             x += 1
@@ -49,9 +48,3 @@ def getMessages():
             x = 0
         i += 1
             
-
-
-
-    #firstMessage = messagesResponse['response']['messages'][0]['id']
-    #print(messagesResponse['response']['messages'][0])
-   # print(firstMessage)
