@@ -2,12 +2,9 @@ import requests
 import config
 import bot
 
-def main():
+
+if __name__ == "__main__":
     bot.printAllMessages()
-
-
-main()
-
 
 
     #baseUrl = 'https://api.groupme.com/v3'
