@@ -3,8 +3,8 @@ import bot
 
 if __name__ == "__main__":
    # bot.groupMessage("Working with attachments")
-    #bot.printAllMessages()
-    bot.post_data()
+    bot.printAllMessages()
+    #bot.post_data()
 
 
     #baseUrl = 'https://api.groupme.com/v3'
