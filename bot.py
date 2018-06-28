@@ -40,27 +40,21 @@ def groupMessage(text):
     params = {'bot_id': config.bot_id, 'text': text}
     makePostRequest(url, params)
 
-def getFile(url):
+def getBinaryData(url):
     r_file = requests.get(url)
     content = r_file.content
+    imgData = BytesIO(content)
+    return imgData
 
-    img = Image.open(BytesIO(content))
+    # with open('test.txt', 'wb') as fd:
+    #     #for chunk in r_file.iter_content(chunk_size=128):
+    #         fd.write(content)
 
-    #if succesful display image
-    img.show()
+def push_img(img):
 
-    with open('test.txt', 'wb') as fd:
-        #for chunk in r_file.iter_content(chunk_size=128):
-            fd.write(content)
-    
-    
-
-
-    #with open(path, 'wb') as f:)
-    #    for chunk in r_file.iter_content():
-    #        f.write(chunk)
-    #local_file = open(path, 'rb')
-
+    req = requests.post('http://313fae50.ngrok.io', data = img)
+    if(req.status_code == 200):
+        print('success')
 
 # Prints all messages posted in a specified group chat (group id)
 # Note: Hard-coded group ID in
@@ -79,8 +73,8 @@ def printAllMessages():
             #print(messagesResponse['response']['messages'][x]['text'], (i+1))
             if messagesResponse['response']['messages'][x]['attachments']:
                 img_url = messagesResponse['response']['messages'][x]['attachments'][0]['url']
-                getFile(img_url)
-                break
+                data = getBinaryData(img_url)
+                push_img(data)
             if(x == 19):
                 id = messagesResponse['response']['messages'][x]['id'] 
             x += 1
