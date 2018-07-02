@@ -1,6 +1,7 @@
 import config
 import requests
 import json
+import imgur
 
 from io import BytesIO
 from PIL import Image
@@ -73,8 +74,10 @@ def printAllMessages():
             #print(messagesResponse['response']['messages'][x]['text'], (i+1))
             if messagesResponse['response']['messages'][x]['attachments']:
                 img_url = messagesResponse['response']['messages'][x]['attachments'][0]['url']
-                data = getBinaryData(img_url)
-                push_img(data)
+                #data = getBinaryData(img_url)
+                imgur.imgur_post(img_url)
+                #push_img(data)
+                break
             if(x == 19):
                 id = messagesResponse['response']['messages'][x]['id'] 
             x += 1
