@@ -1,5 +1,9 @@
 import config
 import requests
+import json
+
+from io import BytesIO
+from PIL import Image
 
 # Group ID: 41498316
 
@@ -24,15 +28,33 @@ def makeGetRequest(url, params, json):
 
     print(r)
 
+def post_data():
+    base_url = 'http://c7dadf45.ngrok.io'
+    payload = json.dumps({'user': 'pass'})
+    
+    r = requests.post(base_url, data=payload)
+    print(r.status_code)
+
 def groupMessage(text):
     url = '/bots/post'
     params = {'bot_id': config.bot_id, 'text': text}
     makePostRequest(url, params)
 
+def getBinaryData(url):
+    r_file = requests.get(url)
+    content = r_file.content
+    imgData = BytesIO(content)
+    return imgData
 
-# def extractAttachment(msgJson):
-#     if msgJson['response']['messages'][0]['attachments']:
-#         print
+    # with open('test.txt', 'wb') as fd:
+    #     #for chunk in r_file.iter_content(chunk_size=128):
+    #         fd.write(content)
+
+def push_img(img):
+
+    req = requests.post('http://313fae50.ngrok.io', data = img)
+    if(req.status_code == 200):
+        print('success')
 
 # Prints all messages posted in a specified group chat (group id)
 # Note: Hard-coded group ID in
@@ -48,11 +70,13 @@ def printAllMessages():
 
     while i < msg_count:
         if(x < 20):
-            print(messagesResponse['response']['messages'][x]['text'], (i+1))
+            #print(messagesResponse['response']['messages'][x]['text'], (i+1))
             if messagesResponse['response']['messages'][x]['attachments']:
-                print(messagesResponse['response']['messages'][x]['attachments'][0]['url'])
+                img_url = messagesResponse['response']['messages'][x]['attachments'][0]['url']
+                data = getBinaryData(img_url)
+                push_img(data)
             if(x == 19):
-               id = messagesResponse['response']['messages'][x]['id'] 
+                id = messagesResponse['response']['messages'][x]['id'] 
             x += 1
         else:
             params = {'token': config.token, 'before_id': id} # before_id, since_id, after_id
