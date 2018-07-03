@@ -9,7 +9,6 @@ import json
 # you must post an image directly to your account
 
 def post_img(img):
-
     # if img is a url
     headers = {
         'Authorization': 'Bearer ' + config.imgur_token
@@ -24,7 +23,7 @@ def post_img(img):
         'ids[]': img_id
     }
     albumHash = 'k8I6ZgQ'
-    url = f'https://api.imgur.com/3/album/{albumHash}/add'
+    url = f'https://api.imgur.com/3/album/{albumHash}/add'    
     r = requests.post(url, headers=headers, params=params)
     print(r.status_code)
     
