@@ -60,6 +60,7 @@ def push_img(img):
 
 # Prints all messages posted in a specified group chat (group id)
 # Note: Hard-coded group ID in
+# should be run upon joining for the first time
 def get_images():
     base_url = 'https://api.groupme.com/v3'
     url = '/groups/41498316/messages'
