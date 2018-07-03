@@ -17,10 +17,19 @@ def post_img(img):
     params =  {
         'image': img
     }
-    r = requests.post('https://api.imgur.com/3/image', headers = headers, params = params)
-    print(r.status_code)
+    r = requests.post('https://api.imgur.com/3/image', headers = headers, params = params).json()
+    img_id = r['data']['id']
 
-def post_images(img_list):
+    params =  {
+        'ids[]': img_id
+    }
+    albumHash = 'k8I6ZgQ'
+    url = f'https://api.imgur.com/3/album/{albumHash}/add'
+    r = requests.post(url, headers=headers, params=params)
+    print(r.status_code)
+    
+
+def post_images(img_list): 
     for item in img_list:
         try:
             post_img(item)
@@ -30,7 +39,7 @@ def post_images(img_list):
 
 
 # iterates through the account images and grabs ids
-def get_imgIDs():
+def get_imgIDs(): # deprecated
     
     img_IDs = []
     # get request
@@ -56,7 +65,7 @@ def post_album(img_list):
     url = f'https://api.imgur.com/3/album/{albumHash}/add'
     r = requests.post(url, headers=headers, params=params)
     print(r.text)
+
     
-
-
+    
 
