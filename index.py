@@ -1,13 +1,9 @@
 import bot
+import imgur
 
-
+# file is used for testing
 if __name__ == "__main__":
-   # bot.groupMessage("Working with attachments")
-    bot.printAllMessages()
-    #bot.post_data()
-
-
-    #baseUrl = 'https://api.groupme.com/v3'
-    #url = '/bots/post'
-    #headers = {'Content-Type': 'application/JSON'}
-    #params = {'token': config.token, 'text': 'Can you append a url to a base url?', 'bot_id': config.bot_id}
+    # img_list = bot.get_images() # grabs images from group history in the GroupMe by URL
+    # imgur.post_images(img_list) # posts images to the Imgur account with an array 
+    # img_IDs = imgur.get_imgIDs()
+    # imgur.post_album(img_IDs) 
