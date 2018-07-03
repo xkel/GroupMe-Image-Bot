@@ -3,31 +3,7 @@ import requests
 import json
 import imgur
 
-from io import BytesIO
-from PIL import Image
-
 # Group ID: 41498316
-
-def makePostRequest(url, headers = None, params = None):
-    base_url = 'https://api.groupme.com/v3'
-
-    if headers is None:
-        r = requests.post(base_url + url, params = params)
-    elif params is None:
-        r = requests.post(base_url + url, headers = headers)
-    else:
-        r = requests.post(base_url + url, headers = headers, params = params)
-
-    print(r.status_code)
-    print(r.text)
-
-def makeGetRequest(url, params, json):
-    base_url = 'https://api.groupme.com/v3'
-    if json:
-        r = requests.get(base_url + url, params = params).json()
-        return r
-
-    print(r)
 
 def post_data():
     base_url = 'http://c7dadf45.ngrok.io'
@@ -44,15 +20,13 @@ def groupMessage(text):
 def getBinaryData(url):
     r_file = requests.get(url)
     content = r_file.content
-    imgData = BytesIO(content)
-    return imgData
+    return content
 
     # with open('test.txt', 'wb') as fd:
     #     #for chunk in r_file.iter_content(chunk_size=128):
     #         fd.write(content)
 
 def push_img(img):
-
     req = requests.post('http://313fae50.ngrok.io', data = img)
     if(req.status_code == 200):
         print('success')
