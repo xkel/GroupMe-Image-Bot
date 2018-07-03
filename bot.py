@@ -57,27 +57,24 @@ def push_img(img):
     if(req.status_code == 200):
         print('success')
 
+
 # Prints all messages posted in a specified group chat (group id)
 # Note: Hard-coded group ID in
-def printAllMessages():
+def get_images():
     base_url = 'https://api.groupme.com/v3'
     url = '/groups/41498316/messages'
     params = {'token': config.token} # before_id, since_id, after_id
     messagesResponse = requests.get(base_url + url, params = params).json()
     msg_count = messagesResponse['response']['count']
-    
+    img_list = []
     i = 0
     x = 0
-
     while i < msg_count:
         if(x < 20):
             #print(messagesResponse['response']['messages'][x]['text'], (i+1))
             if messagesResponse['response']['messages'][x]['attachments']:
                 img_url = messagesResponse['response']['messages'][x]['attachments'][0]['url']
-                #data = getBinaryData(img_url)
-                imgur.imgur_post(img_url)
-                #push_img(data)
-                break
+                img_list.append(img_url)
             if(x == 19):
                 id = messagesResponse['response']['messages'][x]['id'] 
             x += 1
@@ -86,3 +83,4 @@ def printAllMessages():
             messagesResponse = requests.get(base_url + url, params = params).json()
             x = 0
         i += 1
+    return img_list
