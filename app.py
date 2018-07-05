@@ -1,6 +1,9 @@
 from flask import Flask, request
 import bot
+import config
 import imgur
+
+runBefore = False
 
 app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
@@ -20,4 +23,5 @@ def receive_message():
         return 'good'    
 
 if __name__ == '__main__':
-    app.run()
+    
+   bot1 = bot.Bot(config.bot_id, config.token, config.group_ID)
