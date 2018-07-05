@@ -66,3 +66,6 @@ class Bot:
             img_list = self.get_images()
             imgur.post_images(img_list) # posts images to the Imgur account with an array 
 
+    def imageExists(url): # should only be run to check if an image has been shared already
+        pass
+        
