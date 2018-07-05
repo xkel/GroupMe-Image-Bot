@@ -1,5 +1,6 @@
 from flask import Flask, request
 import bot
+import config
 import imgur
 
 app = Flask(__name__)
@@ -20,4 +21,7 @@ def receive_message():
         return 'good'    
 
 if __name__ == '__main__':
+    
+    bot1 = bot.Bot(config.bot_id, config.token, config.group_ID)
+    bot1.postMessage("OOP")
     app.run()
