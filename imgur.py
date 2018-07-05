@@ -3,7 +3,7 @@ import requests
 import json
 
 
-# series of http requests for imgur
+# series of http requests for imgur api
 
 # imgur only allows you to post images directly to an album if they are already 'owned' by you
 # you must post an image directly to your account
