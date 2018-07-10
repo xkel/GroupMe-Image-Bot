@@ -15,7 +15,7 @@ def receive_message():
         # if the message received is just text with no image
         if(response['attachments'] == []):
             print(response['text'])
-        else: # the message is an image so posti t
+        else: # the message is an image so post it
             if(response['attachments'][0]['type'] == 'image'):
                 print(response['attachments'][0]['url'])
                 img_url = response['attachments'][0]['url']
