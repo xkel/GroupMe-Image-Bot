@@ -3,8 +3,6 @@ import bot
 import config
 import imgur
 
-runBefore = False
-
 app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
