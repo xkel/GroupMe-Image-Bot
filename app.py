@@ -26,5 +26,6 @@ def receive_message():
         return 'good'    
 
 if __name__ == '__main__':
-    os.environ['bot_id']
+    
     bot1 = bot.Bot(os.environ['bot_id'], os.environ['token'], os.environ['group_ID'])
+    app.run()
