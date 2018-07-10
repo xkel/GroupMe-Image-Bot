@@ -1,9 +1,12 @@
 from flask import Flask, request
+from dotenv import load_dotenv
 import bot
-import config
+import os
 import imgur
 
-runBefore = False
+from pathlib import Path  # python3 only
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
 
 app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
@@ -15,7 +18,7 @@ def receive_message():
         # if the message received is just text with no image
         if(response['attachments'] == []):
             print(response['text'])
-        else: # the message is an image so posti t
+        else: # the message is an image so post it
             if(response['attachments'][0]['type'] == 'image'):
                 print(response['attachments'][0]['url'])
                 img_url = response['attachments'][0]['url']
@@ -23,5 +26,5 @@ def receive_message():
         return 'good'    
 
 if __name__ == '__main__':
-    
-   bot1 = bot.Bot(config.bot_id, config.token, config.group_ID)
+    os.environ['bot_id']
+    bot1 = bot.Bot(os.environ['bot_id'], os.environ['token'], os.environ['group_ID'])
