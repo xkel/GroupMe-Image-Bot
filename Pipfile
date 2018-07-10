@@ -8,6 +8,7 @@ requests = "*"
 flask = "*"
 gunicorn = "*"
 python-dotenv = "*"
+"psycopg2-binary" = "*"
 
 [dev-packages]
 
