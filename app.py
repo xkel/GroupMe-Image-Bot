@@ -1,7 +1,12 @@
 from flask import Flask, request
+from dotenv import load_dotenv
 import bot
-import config
+import os
 import imgur
+
+from pathlib import Path  # python3 only
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
 
 app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
@@ -21,5 +26,5 @@ def receive_message():
         return 'good'    
 
 if __name__ == '__main__':
-    
-   bot1 = bot.Bot(config.bot_id, config.token, config.group_ID)
+    os.environ['bot_id']
+    bot1 = bot.Bot(os.environ['bot_id'], os.environ['token'], os.environ['group_ID'])
