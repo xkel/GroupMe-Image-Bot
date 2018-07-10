@@ -1,4 +1,4 @@
-import config
+import os
 import requests
 import json
 
@@ -11,7 +11,7 @@ import json
 def post_img(img):
     # if img is a url
     headers = {
-        'Authorization': 'Bearer ' + config.imgur_token
+        'Authorization': 'Bearer ' + os.environ['imgur_token']
     }
     params =  {
         'image': img
@@ -44,7 +44,7 @@ def get_imgIDs(): # deprecated
     # get request
 
     headers = {
-        'Authorization': 'Bearer ' + config.imgur_token
+        'Authorization': 'Bearer ' + os.environ['imgur_token']
     }
 
     r = requests.get('https://api.imgur.com/3/account/me/images', headers = headers).json()
@@ -55,7 +55,7 @@ def get_imgIDs(): # deprecated
 
 def post_album(img_list):
     headers = {
-        'Authorization': 'Bearer ' + config.imgur_token
+        'Authorization': 'Bearer ' + os.environ['imgur_token']
     }
     params =  {
         'ids[]': img_list
