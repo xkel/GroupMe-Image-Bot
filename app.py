@@ -5,6 +5,7 @@ import os
 import imgur
 import requests
 
+
 from pathlib import Path  # python3 only
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
@@ -45,4 +46,7 @@ def receive_message():
 if __name__ == '__main__':
     
     bot1 = bot.Bot(os.environ['bot_id'], os.environ['token'], os.environ['group_ID'])
+    #check to see if imgs folder is already populated prior to running
+    if not os.listdir('./imgs/'):
+        bot1.post_images_FS()
     app.run()
