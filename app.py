@@ -25,20 +25,14 @@ def receive_message():
                 print(response['attachments'][0]['url'])
                 img_url = response['attachments'][0]['url']
                 filename = img_url.split('/')[-1]
-                #urllib.request.urlretrieve(img_url, './imgs/' + filename)
-                
-                
                 r = requests.get(img_url, stream=True)
-                content_type = r.headers['content-type']
-                file_type = content_type.split('/')[-1]
-                print(content_type)
                 if r.status_code == 200:
+                    content_type = r.headers['content-type']
+                    file_type = content_type.split('/')[-1]
+                    print(content_type)  
                     with open('./imgs/' + filename + '.' + file_type, 'wb') as f:
                         for chunk in r:
                             f.write(chunk)                
-                
-                print(filename)
-                print(' ')
                 
                 #imgur.post_img(img_url)
         return 'good'    
