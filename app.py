@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 import bot
 import os
 import imgur
+import requests
+
 
 from pathlib import Path  # python3 only
 env_path = Path('.') / '.env'
@@ -22,10 +24,23 @@ def receive_message():
             if(response['attachments'][0]['type'] == 'image'):
                 print(response['attachments'][0]['url'])
                 img_url = response['attachments'][0]['url']
-                imgur.post_img(img_url)
+                filename = img_url.split('/')[-1]
+                r = requests.get(img_url, stream=True)
+                if r.status_code == 200:
+                    content_type = r.headers['content-type']
+                    file_type = content_type.split('/')[-1]
+                    print(content_type)  
+                    with open('./imgs/' + filename + '.' + file_type, 'wb') as f:
+                        for chunk in r:
+                            f.write(chunk)                
+                
+                #imgur.post_img(img_url)
         return 'good'    
 
 if __name__ == '__main__':
     
     bot1 = bot.Bot(os.environ['bot_id'], os.environ['token'], os.environ['group_ID'])
+    #check to see if imgs folder is already populated prior to running
+    if not os.listdir('./imgs/'):
+        bot1.post_images_FS()
     app.run()

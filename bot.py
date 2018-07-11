@@ -64,7 +64,21 @@ class Bot:
 
     def post_all_images(self):
             img_list = self.get_images()
-            imgur.post_images(img_list) # posts images to the Imgur account with an array 
+            imgur.post_images(img_list) # posts images to the Imgur account with an array
+
+    def post_images_FS(self):
+        img_list = self.__get_images()
+
+        for img_url in img_list:
+            filename = img_url.split('/')[-1]
+            r = requests.get(img_url, stream=True)
+            #print(content_type)
+            if r.status_code == 200:
+                content_type = r.headers['content-type']
+                file_type = content_type.split('/')[-1]
+                with open('./imgs/' + filename + '.' + file_type, 'wb') as f:
+                    for chunk in r:
+                        f.write(chunk)
 
     def imageExists(url): # should only be run to check if an image has been shared already
         pass
