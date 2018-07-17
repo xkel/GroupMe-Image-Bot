@@ -14,12 +14,12 @@ app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
     if request.method == 'GET':
-        return "I'm a simple GroupMe bot built with Python, I post pictures shared in a group to imgur"
-    else:
+        return "I'm a simple GroupMe bot built with Python, I take and save pictures shared in a group chat"
+    else: # issue response to the received post request (message)
         response = request.get_json()
         # if the message received is just text with no image
         if(response['attachments'] == []):
-            print(response['text'])
+            pass
         else: # the message is an image so post it
             if(response['attachments'][0]['type'] == 'image'):
                 print(response['attachments'][0]['url'])
@@ -34,13 +34,22 @@ def receive_message():
                         for chunk in r:
                             f.write(chunk)                
                 
-                #imgur.post_img(img_url)
+                # imgur.post_img(img_url)
         return 'good'    
 
 if __name__ == '__main__':
-    
+    this_dir = os.getcwd()
+    print(this_dir)
+    img_file = this_dir + '/imgs'
+    print(img_file)
+
+    if not os.path.isdir(img_file):
+        os.mkdir(img_file)
+        #print(this_dir) 
     bot1 = bot.Bot(os.environ['bot_id'], os.environ['token'], os.environ['group_ID'])
-    #check to see if imgs folder is already populated prior to running
-    if not os.listdir('./imgs/'):
-        bot1.post_images_FS()
+    # # check to see if imgs folder is already populated prior to running
+    # if not (Path('./imgs').exists()):
+
+    # if not os.listdir('./imgs/'):
+    bot1.post_images_FS()
     app.run()
