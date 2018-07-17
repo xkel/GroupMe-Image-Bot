@@ -77,13 +77,11 @@ class Bot:
             imgur.post_images(img_list) # posts images to the Imgur account with an array
 
     def post_images_FS(self):
-        #print('first checkpoint')
         img_list = self.__get_images()
 
         for img_url in img_list:
             filename = img_url.split('/')[-1]
             r = requests.get(img_url, stream=True)
-            #print(content_type)
             if r.status_code == 200:
                 content_type = r.headers['content-type']
                 file_type = content_type.split('/')[-1]
