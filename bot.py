@@ -9,6 +9,13 @@ class Bot:
         self.auth_token = auth
         self.group_id = group
 
+    def __makePostRequest(self, url, params):
+        base_url = 'https://api.groupme.com/v3'
+        r = requests.post(base_url + url, params = params)
+        
+        print(r.status_code)
+        print(r.text)
+
     def __post_data():
         base_url = 'http://0bb05726.ngrok.io'
         payload = json.dumps({'user': 'pass'})
@@ -33,7 +40,7 @@ class Bot:
     def postMessage(self, text): 
         url = '/bots/post'
         params = {'bot_id': self.bot_token, 'text': text}
-        self.makePostRequest(url, params)
+        self.__makePostRequest(url, params)
 
     # Returns an array of all images shared in a group
 
@@ -49,9 +56,12 @@ class Bot:
         while i < msg_count:
             if(x < 20):
                 #print(messagesResponse['response']['messages'][x]['text'], (i+1))
-                if messagesResponse['response']['messages'][x]['attachments']:
-                    img_url = messagesResponse['response']['messages'][x]['attachments'][0]['url']
-                    img_list.append(img_url)
+                if(messagesResponse['response']['messages'][x]['attachments'] == []):
+                    pass
+                else:
+                    if(messagesResponse['response']['messages'][x]['attachments'][0]['type'] == 'image'): # message should be an image at this point
+                        img_url = messagesResponse['response']['messages'][x]['attachments'][0]['url']
+                        img_list.append(img_url)
                 if(x == 19):
                     id = messagesResponse['response']['messages'][x]['id'] 
                 x += 1
@@ -67,6 +77,7 @@ class Bot:
             imgur.post_images(img_list) # posts images to the Imgur account with an array
 
     def post_images_FS(self):
+        #print('first checkpoint')
         img_list = self.__get_images()
 
         for img_url in img_list:
@@ -79,6 +90,8 @@ class Bot:
                 with open('./imgs/' + filename + '.' + file_type, 'wb') as f:
                     for chunk in r:
                         f.write(chunk)
+                    print(filename + ' image saved')
+                        
 
     def imageExists(url): # should only be run to check if an image has been shared already
         pass
