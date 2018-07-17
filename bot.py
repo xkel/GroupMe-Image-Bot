@@ -82,21 +82,14 @@ class Bot:
         for img_url in img_list:
             filename = img_url.split('/')[-1]
             r = requests.get(img_url, stream=True)
-<<<<<<< HEAD
-            #print(content_type)
-=======
->>>>>>> 431259bca74724c660d6ee0f49228e14d1017c0a
             if r.status_code == 200:
                 content_type = r.headers['content-type']
                 file_type = content_type.split('/')[-1]
                 with open('./imgs/' + filename + '.' + file_type, 'wb') as f:
                     for chunk in r:
                         f.write(chunk)
-<<<<<<< HEAD
-=======
                     print(filename + ' image saved')
                         
->>>>>>> 431259bca74724c660d6ee0f49228e14d1017c0a
 
     def imageExists(url): # should only be run to check if an image has been shared already
         pass

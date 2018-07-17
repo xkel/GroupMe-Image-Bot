@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import bot
-import imgur
-=======
->>>>>>> 431259bca74724c660d6ee0f49228e14d1017c0a
 
 # file is used for testing
 if __name__ == "__main__":
@@ -10,8 +5,6 @@ if __name__ == "__main__":
     # imgur.post_images(img_list) # posts images to the Imgur account with an array 
     # img_IDs = imgur.get_imgIDs()
     # imgur.post_album(img_IDs) 
-<<<<<<< HEAD
-=======
 
 
     # def __get_images(self):
@@ -38,4 +31,3 @@ if __name__ == "__main__":
     #             x = 0
     #         i += 1
     #     return img_list
->>>>>>> 431259bca74724c660d6ee0f49228e14d1017c0a
