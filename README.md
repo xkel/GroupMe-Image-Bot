@@ -1,4 +1,4 @@
-# GroupMe-Image--Bot
+# GroupMe-Image-Bot
 
 This is a bot that I developed in Python to be able to easily save all images ever shared in a group to file system. I wrote this application because it served to be especially ideal for groups where memorable photos are shared and potentially 100s to over 1000s of messages and images have already been shared.
 
