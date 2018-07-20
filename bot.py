@@ -15,6 +15,7 @@ class Bot:
         
         print(r.status_code)
         print(r.text)
+        return r.status_code
 
     def __post_data():
         base_url = 'http://0bb05726.ngrok.io'
@@ -40,7 +41,7 @@ class Bot:
     def postMessage(self, text): 
         url = '/bots/post'
         params = {'bot_id': self.bot_token, 'text': text}
-        self.__makePostRequest(url, params)
+        return self.__makePostRequest(url, params)
 
     # Returns an array of all images shared in a group
 
@@ -89,6 +90,7 @@ class Bot:
                     for chunk in r:
                         f.write(chunk)
                     print(filename + ' image saved')
+        return img_list
                         
 
     def imageExists(url): # should only be run to check if an image has been shared already
