@@ -39,17 +39,15 @@ def receive_message():
 
 if __name__ == '__main__':
     this_dir = os.getcwd()
-    print(this_dir)
     img_file = this_dir + '/imgs'
-    print(img_file)
+    bot_inst = bot.Bot(os.environ['bot_id'], os.environ['token'], os.environ['group_ID'])
 
     if not os.path.isdir(img_file):
+        print('Creating image folder at: ' + img_file)
         os.mkdir(img_file)
-        #print(this_dir) 
-    bot1 = bot.Bot(os.environ['bot_id'], os.environ['token'], os.environ['group_ID'])
-    # # check to see if imgs folder is already populated prior to running
-    # if not (Path('./imgs').exists()):
+        print('Populating image folder at: ' + img_file + ' this may take a moment')
+        bot_inst.run()
+        print('Finished')
 
-    # if not os.listdir('./imgs/'):
-    bot1.post_images_FS()
+    print('Finished, listening for new images')
     app.run()

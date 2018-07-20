@@ -56,13 +56,13 @@ class Bot:
         x = 0
         while i < msg_count:
             if(x < 20):
-                #print(messagesResponse['response']['messages'][x]['text'], (i+1))
                 if(messagesResponse['response']['messages'][x]['attachments'] == []):
                     pass
                 else:
                     if(messagesResponse['response']['messages'][x]['attachments'][0]['type'] == 'image'): # message should be an image at this point
                         img_url = messagesResponse['response']['messages'][x]['attachments'][0]['url']
                         img_list.append(img_url)
+                        print('Image ' + str(i) + '/' + str(msg_count) + ' collected')
                 if(x == 19):
                     id = messagesResponse['response']['messages'][x]['id'] 
                 x += 1
@@ -77,7 +77,7 @@ class Bot:
             img_list = self.get_images()
             imgur.post_images(img_list) # posts images to the Imgur account with an array
 
-    def post_images_FS(self):
+    def __post_images_FS(self):
         img_list = self.__get_images()
 
         for img_url in img_list:
@@ -95,4 +95,7 @@ class Bot:
 
     def imageExists(url): # should only be run to check if an image has been shared already
         pass
+    
+    def run(self):
+        self.__post_images_FS()
         
