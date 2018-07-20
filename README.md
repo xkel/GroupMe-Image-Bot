@@ -1,6 +1,6 @@
-# GroupMe-Image-Scraper-Bot
+# GroupMe-Image--Bot
 
-This is a bot that I developed in Python to be able to easily save all images ever shared in a group to file system. I wrote this application because it served to be especially ideal for groups where memorable photos are shared and potentially 100s to over 1000s over messages and images have already been shared.
+This is a bot that I developed in Python to be able to easily save all images ever shared in a group to file system. I wrote this application because it served to be especially ideal for groups where memorable photos are shared and potentially 100s to over 1000s of messages and images have already been shared.
 
 ## Getting Started
 
@@ -10,25 +10,27 @@ It is necessary to configure your own environment variables. Specify a '.env' fi
 
 In the .env file:
 
+```
 bot_id="YOUR BOT ID"
 token="YOUR USER TOKEN"
 group_ID="THE GROUP ID"
-
+```
 On start the application saves all previously shared images, and then proceeds to listen for any new images that my be shared.
 
 ### Deployment
 
 You may consider deploying the bot to a cloud server such as Heroku, keep in mind that I intended for images to write to file system so you may have to configure a solution on the cloud to have images write to a database.
 
-##### Prerequisites
+### Prerequisites
 
 Python 3.6.5
 
-It is essential to have the necessary Python modules installed such as:
-Flask
-Pip
-Requests
-and python-dotenv
+It is essential to have the necessary Python modules installed such as: 
+
+Flask <br />
+Pip <br />
+Requests <br />
+python-dotenv <br />
 
 ## Dependency Resolution
 Generate your own requirements file by using the command:
