@@ -32,7 +32,7 @@ and python-dotenv
 
 ## Dependency Resolution
 Generate your own requirements file by using the command:
-pip freeze > 'filename'
+pip freeze > 'filename' (typically: 'requirements.txt')
 
 then resolve dependencies with the command:
 pip install -r requirements.txt
