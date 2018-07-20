@@ -30,14 +30,14 @@ Pip
 Requests
 and python-dotenv
 
-### Dependency Resolution
+## Dependency Resolution
 Generate your own requirements file by using the command:
 pip freeze > 'filename'
 
 then resolve dependencies with the command:
 pip install -r requirements.txt
 
-#### Unit Testing
+## Unit Testing
 unittest is a standard module which does not need to be installed.
 
 run the command: python3 -m unittest from the terminal.
