@@ -37,10 +37,10 @@ pip freeze > 'filename'
 then resolve dependencies with the command:
 pip install -r requirements.txt
 
-#### Test
+#### Unit Testing
 unittest is a standard module which does not need to be installed.
 
-simply type python -m unittest from the terminal.
+run the command: python -m unittest from the terminal.
 
 Developers have the option of installing unittest2 which is a back-port of unittest for Python2.6,
 however that is not necessary for this project.
