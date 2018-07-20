@@ -1,4 +1,4 @@
-# No longer in use
+# Optional, No longer in use
 
 import os
 import requests
