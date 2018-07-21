@@ -34,3 +34,7 @@ Temporary Items
 
 #Dependency List
 requirements.txt
+
+# VS
+.vscode
+
