@@ -62,7 +62,7 @@ class Bot:
                     if(messagesResponse['response']['messages'][x]['attachments'][0]['type'] == 'image'): # message should be an image at this point
                         img_url = messagesResponse['response']['messages'][x]['attachments'][0]['url']
                         img_list.append(img_url)
-                        print('Image ' + str(i) + '/' + str(msg_count) + ' collected')
+                        print('Image ' + str(i) + '/' + str(msg_count) + ' collected', end='\r')
                 if(x == 19):
                     id = messagesResponse['response']['messages'][x]['id'] 
                 x += 1
@@ -89,7 +89,7 @@ class Bot:
                 with open('./imgs/' + filename + '.' + file_type, 'wb') as f:
                     for chunk in r:
                         f.write(chunk)
-                    print(filename + ' image saved')
+                    print('Image: ' + filename + ' saved', end='\r')
         return img_list
                         
 

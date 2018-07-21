@@ -32,9 +32,8 @@ def receive_message():
                     print(content_type)  
                     with open('./imgs/' + filename + '.' + file_type, 'wb') as f:
                         for chunk in r:
-                            f.write(chunk)                
-                
-                # imgur.post_img(img_url)
+                            f.write(chunk) 
+                        print('Image: ' + filename + ' saved')               
         return 'good'    
 
 if __name__ == '__main__':
@@ -47,7 +46,8 @@ if __name__ == '__main__':
         os.mkdir(img_file)
         print('Populating image folder at: ' + img_file + ' this may take a moment')
         bot_inst.run()
+        print('')
         print('Finished')
 
-    print('Finished, listening for new images')
+    print('Listening for new images')
     app.run()
