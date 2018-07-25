@@ -12,7 +12,7 @@ class Bot:
     def __makePostRequest(self, url, params):
         base_url = 'https://api.groupme.com/v3'
         r = requests.post(base_url + url, params = params)
-        
+
         print(r.status_code)
         print(r.text)
         return r.status_code
@@ -20,7 +20,7 @@ class Bot:
     def __post_data():
         base_url = 'http://0bb05726.ngrok.io'
         payload = json.dumps({'user': 'pass'})
-        
+
         r = requests.post(base_url, data=payload)
         print(r.status_code)
 
@@ -38,7 +38,7 @@ class Bot:
         if(req.status_code == 200):
             print('success')
 
-    def postMessage(self, text): 
+    def postMessage(self, text):
         url = '/bots/post'
         params = {'bot_id': self.bot_token, 'text': text}
         return self.__makePostRequest(url, params)
@@ -64,7 +64,7 @@ class Bot:
                         img_list.append(img_url)
                         print('Image ' + str(i) + '/' + str(msg_count) + ' collected', end='\r')
                 if(x == 19):
-                    id = messagesResponse['response']['messages'][x]['id'] 
+                    id = messagesResponse['response']['messages'][x]['id']
                 x += 1
             else:
                 params = {'token': self.auth_token, 'before_id': id} # before_id, since_id, after_id
@@ -91,11 +91,11 @@ class Bot:
                         f.write(chunk)
                     print('Image: ' + filename + ' saved', end='\r')
         return img_list
-                        
+
 
     def imageExists(url): # should only be run to check if an image has been shared already
         pass
-    
+
     def run(self):
-        self.__post_images_FS()
-        
+        img_list = self.__post_images_FS()
+        return img_list
