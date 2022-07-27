@@ -9,7 +9,6 @@ env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
 
 class TestBotApp(unittest.TestCase):
-
     def test_postImages(self):
         """Does the bot save images to imgs folder?""" # GIVEN the group chat has at least one image
         testBot = bot.Bot(os.environ['bot_id'], os.environ['token'], os.environ['group_ID'])
